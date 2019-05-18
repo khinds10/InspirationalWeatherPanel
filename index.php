@@ -184,22 +184,26 @@ list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
                 jQuery.getJSON( "http://calendar.kevinhinds.net/events.json", function( data ) {
                   var items = [];
                   var dateKey = '';
+                  var dateCount = 0;
                   jQuery.each( data, function( key, val ) {
-                    if (dateKey != key) {
-                        if (key == '<?=date('D, F jS Y')?>') {
-                            items.push( "<li class='date-title'><h1>TODAY</h1></li>");
-                        } else {
-                            items.push( "<li class='date-title'><h2>" + key + "</h2></li>");
-                        }    
-                        dateKey = key;
-                    }
-                    jQuery.each( val, function( eventKey, eventVal ) {
-                        if (eventVal[0] == '12:00 am') {
-                            items.push( "<li class='date-details'><h4 class='all-day-event'>" + eventVal[1] + "</h4></li>" );
-                        } else {
-                            items.push( "<li class='date-details'><h3>" + eventVal[0] + "</h3>&nbsp;&nbsp;&nbsp;&nbsp;" + eventVal[1] + "</li>" );
-                        }        
-                    });
+                    if (dateCount == 0) {
+                        if (dateKey != key) {
+                            if (key == '<?=date('D, F jS Y')?>') {
+                                items.push( "<li class='date-title'><h1>TODAY</h1></li>");
+                            } else {
+                                items.push( "<li class='date-title'><h2>" + key + "</h2></li>");
+                            }    
+                            dateKey = key;
+                        }
+                        jQuery.each( val, function( eventKey, eventVal ) {
+                            if (eventVal[0] == '12:00 am') {
+                                items.push( "<li class='date-details'><h4 class='all-day-event'>" + eventVal[1] + "</h4></li>" );
+                            } else {
+                                items.push( "<li class='date-details'><h3>" + eventVal[0] + "</h3>&nbsp;&nbsp;&nbsp;&nbsp;" + eventVal[1] + "</li>" );
+                            }        
+                        });
+                    }             
+                    dateCount = dateCount + 1;
                   });
                  
                   jQuery( "<ul/>", {

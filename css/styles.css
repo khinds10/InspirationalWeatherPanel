@@ -24,7 +24,7 @@ h5 {
 
 #quote-message {
     position: fixed;
-    bottom: 10px;
+    bottom: 100px;
     max-width: 550px;
     padding: 10px;
     font-size: 25px;
@@ -37,7 +37,7 @@ h5 {
 
 #skycon-canvas {
     position: fixed;
-    top: 300px;
+    top: 100px;
     left: 475px;
 }
 
@@ -59,14 +59,15 @@ h5 {
 }
 
 #weather-info-container {
-    position:fixed; top: 250px;
+    position:fixed; top: 0px;
     text-shadow: 2px 2px 1px #000;
 }
 
 #events-list {
     float:right;
     text-shadow: 2px 2px 2px #444444;
-    top: -40px;
+    text-align:right;
+    top: -20px;
 }
 
 #hourly-precipitation {
@@ -130,16 +131,3 @@ img {
     padding: 10px;
 }
 
-.shadow {
-    position:fixed;
-    bottom: 0px;
-    right: 0px;
-    width:50%;
-    height: 500px;
-    z-index: 1000;
-    float:right;
-    background: -webkit-linear-gradient(transparent, black);
-    background: -o-linear-gradient(transparent, black);
-    background: -moz-linear-gradient(transparent, black);
-    background: linear-gradient(transparent, black);
-}
