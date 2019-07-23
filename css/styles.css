@@ -11,7 +11,7 @@ h1 {
 }
 
 h2 {
-    font-size: 40px;
+    font-size: 30px;
 }
 
 h4 {
@@ -24,10 +24,10 @@ h5 {
 
 #quote-message {
     position: fixed;
-    bottom: 100px;
+    bottom: 200px;
     max-width: 550px;
     padding: 10px;
-    font-size: 25px;
+    font-size: 20px;
     color: #add8e6;
 }
 
@@ -37,7 +37,7 @@ h5 {
 
 #skycon-canvas {
     position: fixed;
-    top: 100px;
+    top: 20px;
     left: 475px;
 }
 

@@ -44,7 +44,6 @@ foreach($hourlyConditions as $hourlyCondition) {
   // rain
   if ($hourlyCondition->icon == 'rain' || $hourlyCondition->icon == 'sleet' || $hourlyCondition->icon == 'snow') {
     $hourlyCondition->color = '#4A80C7';
-    //if ($hourlyCondition->summary.indexOf('Light') !== -1) $scope.hourlyWeatherParsed[key].color = '#80A4D5';
   }
         
   // cloudy
@@ -100,8 +99,8 @@ list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
                     <h1 style="display:inline; color: <?=$tempColor?>"><?=$currentTemperature?>°</h1> 
                     <span id="daily-temps">[<span style="color: <?=$tempHighColor?>">HIGH: <?=$todaysHigh?>°</span> / <span style="color: <?=$tempLowColor?>">LOW: <?=$todaysLow?>°</span>]</span>
                     <h5 id="sunrise"><span class="sunriseText">Sunrise @ <?=$sunriseTime?></span> / <span class="sunsetText">Sunset @ <?=$sunsetTime?></span></h5>
-                    <h4><?=$currentWeatherSummary?></h4><br/>
-                    <h5><?=$currentWeatherDailySummary?></h5>                
+                    <h4 style="max-width: 550px;"><?=$currentWeatherSummary?></h4><br/>
+                    <h5 style="max-width: 550px;"><?=$currentWeatherDailySummary?></h5>                
 	            </div>
 	           
                <div id="hourly-precipitation" class="row">
@@ -188,7 +187,7 @@ list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
                   var dateKey = '';
                   var dateCount = 0;
                   jQuery.each( data, function( key, val ) {
-                    if (dateCount == 0) {
+                    if (dateCount < 2) {
                         if (dateKey != key) {
                             if (key == '<?=date('D, F jS Y')?>') {
                                 items.push( "<li class='date-title'><h1>TODAY</h1></li>");
