@@ -65,16 +65,18 @@ $testAnimation = $_GET['testAnimation'];
 list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
 ?>
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
 	<head>
 	    <title>Inspriational Weather Panel</title>
 	    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 	    <meta http-equiv="refresh" content="300">
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	    <link rel="shortcut icon" href="favicon.ico" />
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="css/styles.css?v=1.0">
         <meta http-equiv="refresh" content="300">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
         <script>
             window.thisAnimation = 'animated/<?=$currentAnimation?>.js';
             window.thisSound = 'audio/<?=$currentSound?>.wav';
@@ -104,7 +106,7 @@ list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
 	            </div>
 	           
                <div id="hourly-precipitation" class="row">
-                   <div class="col-sm-12">
+                   <div class="col-sm-12" style="position: fixed; bottom: 50px;">
                        <h5>Hourly Conditions</h5>
                    </div>
                    <div id="conditions-hourly-container" class="row">
@@ -112,13 +114,13 @@ list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
                     foreach($hourlyConditionsParsed as $conditionHour) {
                     ?>
                       <div class="col-sm-1 hourly-time-container">
-                         <div class="hourly-time" style="background-color: <?=$conditionHour->color?>;"><?=date('g a', $conditionHour->time)?></div>
+                         <div class="hourly-time" style="background-color: <?=$conditionHour->color?>; text-shadow: 0px 0px 0px #000;"><?=date('g a', $conditionHour->time)?></div>
                       </div>
                     <?php } ?>
                    </div>
-                   <div class="col-sm-12">
-                       <h2><?=date('D, F jS Y')?></h2>
-                   </div>
+
+                    <h2 id="today-date"><?=date('D, F jS Y')?></h2>
+
                    
                     <div id="quote-message">
                         <?=$selectedQuote?>
@@ -192,7 +194,7 @@ list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
                             if (key == '<?=date('D, F jS Y')?>') {
                                 items.push( "<li class='date-title'><h1>TODAY</h1></li>");
                             } else {
-                                items.push( "<li class='date-title'><h2>" + key + "</h2></li>");
+                                items.push( "<li class='date-title'><h2>TOMORROW</h2></li>");
                             }    
                             dateKey = key;
                         }
@@ -200,7 +202,7 @@ list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
                             if (eventVal[0] == '12:00 am') {
                                 items.push( "<li class='date-details'><h4 class='all-day-event'>" + eventVal[1] + "</h4></li>" );
                             } else {
-                                items.push( "<li class='date-details'><h3>" + eventVal[0] + "</h3>&nbsp;&nbsp;&nbsp;&nbsp;" + eventVal[1] + "</li>" );
+                                items.push( "<li class='date-details'><h5 class=''>" + eventVal[0] + "</h5>" + eventVal[1] + "</li>" );
                             }        
                         });
                     }             

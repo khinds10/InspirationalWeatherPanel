@@ -1,9 +1,12 @@
 body {
+    height: 534px;
+    width: 854px;
     color: white;
     background-color: black;
     font-family: Impact, Charcoal, sans-serif;
     overflow: hidden;
     padding: 20px;
+    text-shadow: 2px 2px 2px #000;
 }
     
 h1 {
@@ -47,7 +50,7 @@ h5 {
 
 #sunrise {
     position: fixed; 
-    top: 480px; 
+    top: 430px; 
     left: 290px;
     margin-left: -10px;
 }
@@ -64,10 +67,11 @@ h5 {
 }
 
 #events-list {
-    float:right;
+    position: fixed;
     text-shadow: 2px 2px 2px #444444;
     text-align:right;
     top: -20px;
+    right: 0px;
 }
 
 #hourly-precipitation {
@@ -83,6 +87,13 @@ h5 {
 
 #conditions-hourly-container {
     margin-left: 5px;
+    position: fixed; 
+    bottom: 10px
+}
+
+#today-date {
+    position: fixed; 
+    bottom: 100px;
 }
 
 .hourly-time-container {
