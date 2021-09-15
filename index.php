@@ -190,14 +190,7 @@ list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
                   var dateCount = 0;
                   jQuery.each( data, function( key, val ) {
                     if (dateCount < 2) {
-                        if (dateKey != key) {
-                            if (key == '<?=date('D, F jS Y')?>') {
-                                items.push( "<li class='date-title'><h1>TODAY</h1></li>");
-                            } else {
-                                items.push( "<li class='date-title'><h2>TOMORROW</h2></li>");
-                            }    
-                            dateKey = key;
-                        }
+                        items.push( "<li class='date-title'><h3>" + key + "</h3></li>");
                         jQuery.each( val, function( eventKey, eventVal ) {
                             if (eventVal[0] == '12:00 am') {
                                 items.push( "<li class='date-details'><h4 class='all-day-event'>" + eventVal[1] + "</h4></li>" );
