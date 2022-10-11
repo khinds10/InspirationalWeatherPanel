@@ -137,7 +137,7 @@ list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
 	           
                <div id="hourly-precipitation" class="row">
                    <div class="col-sm-12" style="position: fixed; bottom: 50px;">
-                       <h5>Hourly Conditions</h5>
+                       <h5>Hourly Precipitation</h5>
                    </div>
                    <div id="conditions-hourly-container" class="row">
                     <?php
