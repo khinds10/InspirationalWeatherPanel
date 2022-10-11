@@ -13,7 +13,7 @@ while (!$shortQuoteSelected) {
 
 // get current temperature and current daily high
 $currentConditions = json_decode(cURL($weatherAPIURL . $weatherAPIKey));
-$currentTemperature = round($currentConditions->currently->apparentTemperature);
+$currentTemperature = round($currentConditions->currently->temperature);
 $tempColor = cURL("{$temperatureColorAPI}/?temperature=" . $currentTemperature);
 
 // current / daily conditions
@@ -23,12 +23,12 @@ $sunriseTime = date("g:i a", $currentConditions->daily->data[0]->sunriseTime);
 $sunsetTime = date("g:i a", $currentConditions->daily->data[0]->sunsetTime);
 
 // high temp
-$todaysHigh = round($currentConditions->daily->data[0]->apparentTemperatureHigh);
+$todaysHigh = round($currentConditions->daily->data[0]->temperatureHigh);
 $todaysHighTime = date("g:i a", $currentConditions->daily->data[0]->temperatureHighTime);
 $tempHighColor = cURL("{$temperatureColorAPI}/?temperature=" . $todaysHigh);
 
 // low temp
-$todaysLow = round($currentConditions->daily->data[0]->apparentTemperatureLow);
+$todaysLow = round($currentConditions->daily->data[0]->temperatureLow);
 $todaysLowTime = date("g:i a", $currentConditions->daily->data[0]->temperatureLowTime);
 $tempLowColor = cURL("{$temperatureColorAPI}/?temperature=" . $todaysLow);
 
@@ -92,8 +92,38 @@ list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
 	    <script type="text/javascript" src="files/main.js"></script>
 	    <script type="text/javascript" src="/js/skycons.js"></script>
 	    <script type="text/javascript" src="/js/jquery.textfill.min.js"></script>
+        <script>
+            function startTime() {
+              var date = new Date();
+              var hours = date.getHours();
+              var minutes = date.getMinutes();
+              var ampm = hours >= 12 ? 'PM' : 'AM';
+              hours = hours % 12;
+              hours = hours ? hours : 12; // the hour '0' should be '12'
+              minutes = minutes < 10 ? '0'+minutes : minutes;
+              var strTime = hours + ':' + minutes + ' ' + ampm;
+              document.getElementById('time').innerHTML =  strTime;
+              setTimeout(startTime, 1000);
+            }
+            function checkTime(i) {
+              if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+              return i;
+            }
+        </script>
+        <style>
+        #time {
+            color:white;
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            background: black;
+            z-index: 10;
+            padding: 10px;
+            font-size: 100px
+        }
+        </style>
     </head>
-    <body>
+    <body onload="startTime()">
         <div class="row">
             <div class="col-sm-6">
                 <canvas id="mycanvas" width="650" height="500"></canvas>
@@ -209,5 +239,6 @@ list ($currentAnimation, $currentSound) = $animation->getImage($testAnimation);
                 }); 
             });
 	    </script>
+	    <h1 id="time"></h1>
     </body>
 </html>
